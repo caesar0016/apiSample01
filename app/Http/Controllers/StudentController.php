@@ -21,7 +21,7 @@ class StudentController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        //-- Insert data into the database
         $fields = $request->validate([
             'name' => 'required|max:255',
             'location' => 'required',
@@ -38,7 +38,9 @@ class StudentController extends Controller
      */
     public function show(student $student)
     {
-        //
+        //-- display the data
+
+        return $student;
     }
 
     /**
@@ -48,7 +50,17 @@ class StudentController extends Controller
     {
         //-- Validate the request here
 
-        
+        //-- Insert data into the database
+        $fields = $request->validate([
+            'name' => 'required|max:255',
+            'location' => 'required',
+            'age' => 'required',
+            'course' => 'required',
+        ]);
+
+        $student->update($fields);
+        return $student;
+
     }
 
     /**
@@ -56,6 +68,9 @@ class StudentController extends Controller
      */
     public function destroy(student $student)
     {
-        //
+        //-- Hello world
+
+        $student->delete();
+        return ['message' => 'The post was deleted'];
     }
 }
