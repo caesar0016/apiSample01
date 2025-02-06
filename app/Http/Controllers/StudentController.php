@@ -22,14 +22,15 @@ class StudentController extends Controller
     public function store(Request $request)
     {
         //
-        $request->validate([
-            'name' => 'required|max:5',
+        $fields = $request->validate([
+            'name' => 'required|max:255',
             'location' => 'required',
             'age' => 'required',
             'course' => 'required',
         ]);
 
-        return 'Bakit ka mag eenroll lol';
+        $student = student::create($fields);
+        return [ 'student001' => $student];
     }
 
     /**
